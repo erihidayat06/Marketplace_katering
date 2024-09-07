@@ -81,8 +81,7 @@ class ProfileController extends Controller
         // Mengambil transaksi unik berdasarkan merchant_id
         $transactions = Transaction::where('user_id', Auth::id())
             ->where('merchant_id', $merchant->id)
-            ->get()
-            ->unique('merchant_id');
+            ->get();
 
         // Mengambil semua detail transaksi untuk perhitungan total
         $transactionDetails = Transaction::where('user_id', Auth::id())
@@ -95,6 +94,8 @@ class ProfileController extends Controller
         $totalPrice = $transactionDetails->sum(function ($transaction) {
             return $transaction->quantity * $transaction->product->price; // Menghitung harga total
         });
+
+
 
         return view('merchant.index', [
             'merchant' => $merchant,

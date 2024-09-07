@@ -106,17 +106,65 @@
         <footer class="footer fixed-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col">
                         <h5>Total Quantity</h5>
                         <p>{{ $totalQuantity }}</p>
                     </div>
-                    <div class="col-md-6 text-md-end">
+                    <div class="col">
                         <h5>Total Price</h5>
                         <p>{{ $totalPrice }}</p>
                     </div>
+                    <div class="col">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal">
+                            Detail
+                        </button>
+
+
+                    </div>
                 </div>
             </div>
+
         </footer>
+
+        <!-- Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="detailModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+
+                            </tr>
+                            @foreach ($transactions as $transaction)
+                                <tr>
+                                    <td>{{ $transaction->product->product_name }}</td>
+                                    <td>{{ $transaction->quantity }}</td>
+                                    <td>{{ $transaction->product->price }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col">
+                            <h5>Total Quantity</h5>
+                            <p>{{ $totalQuantity }}</p>
+                        </div>
+                        <div class="col">
+                            <h5>Total Price</h5>
+                            <p>{{ $totalPrice }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
