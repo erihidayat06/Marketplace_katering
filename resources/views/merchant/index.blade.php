@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5" style="margin-bottom: 300px">
         <div class="row">
             <div class="col mx-auto">
                 <div class="card">
@@ -94,7 +94,29 @@
             @endforeach
         </div>
 
-        {{ $transactions }}
+
+        <style>
+            .footer {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-top: 1px solid #e9ecef;
+            }
+        </style>
+
+        <footer class="footer fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Total Quantity</h5>
+                        <p>{{ $totalQuantity }}</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <h5>Total Price</h5>
+                        <p>{{ $totalPrice }}</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     </div>
 
