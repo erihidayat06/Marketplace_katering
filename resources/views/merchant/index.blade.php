@@ -161,6 +161,12 @@
                             <h5>Total Price</h5>
                             <p>{{ $totalPrice }}</p>
                         </div>
+                        <form action="/transaction/update" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="merchant_id" value="{{ $merchant->id }}">
+                            <button type="submit" class="btn btn-sm btn-primary">Pesan</button>
+                        </form>
                     </div>
                 </div>
             </div>

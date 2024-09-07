@@ -21,9 +21,9 @@
          <li class="nav-heading">Pages</li>
 
          <li class="nav-item">
-             <a class="nav-link collapsed" href="/dashboard/profile">
+             <a class="nav-link collapsed" href="/dashboard/transaction">
                  <i class="bi bi-grid"></i>
-                 <span>Profil Merchant</span>
+                 <span>Transaction</span>
              </a>
          </li><!-- End Dashboard Nav -->
 

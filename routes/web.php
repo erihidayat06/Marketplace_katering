@@ -30,7 +30,10 @@ Route::post('/daftar-merchant', [ProfileController::class, 'store']);
 
 Route::resource('/dashboard/product', ProductMakananController::class);
 
+Route::get('/dashboard/transaction', [TransactionController::class, 'indexAdmin']);
 Route::post('/transaction/store', [TransactionController::class, 'store']);
+Route::get('/transaction', [TransactionController::class, 'index']);
+Route::put('/transaction/update', [TransactionController::class, 'update']);
 
 Route::get('/login-customer', []);
 

@@ -8,6 +8,44 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    public function indexAdmin()
+    {
+        // Mengambil semua detail transaksi untuk perhitungan total
+        $transactionDetails = Transaction::where('user_id', Auth::id())->where('kode_pesanan', '!=', '')
+            ->with('product')
+            ->get()->unique('kode_pesanan');
+
+        $transaction = Transaction::all();
+
+        return view(
+            'dashboard.transaction.index',
+            [
+                'transactions' => $transactionDetails,
+                'transactionSum' => $transaction
+            ]
+        );
+    }
+
+    public function index()
+    {
+        // Mengambil semua detail transaksi untuk perhitungan total
+        $transactionDetails = Transaction::where('user_id', Auth::id())->where('kode_pesanan', '!=', '')
+            ->with('product')
+            ->get()->unique('kode_pesanan');
+
+        $transaction = Transaction::all();
+
+        return view(
+            'transaction.index',
+            [
+                'transactions' => $transactionDetails,
+                'transactionSum' => $transaction
+            ]
+        );
+    }
+
+
+
     public function store(Request $request)
     {
 
@@ -27,6 +65,17 @@ class TransactionController extends Controller
 
 
         return redirect()->back()->with('success', 'Transaksi berhasil disimpan.');
+    }
+
+
+    public function update(Request $request)
+    {
+        $validatedData['kode_pesanan'] = $this->generateOrderCode();
+
+        Transaction::where('merchant_id', $request->merchant_id)->where('kode_pesanan', '=', '')->update($validatedData);
+
+
+        return redirect('/transaction')->with('success', 'Transaksi berhasil disimpan.');
     }
 
     private function generateOrderCode()

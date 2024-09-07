@@ -79,13 +79,13 @@ class ProfileController extends Controller
         $products = $merchant->product;
 
         // Mengambil transaksi unik berdasarkan merchant_id
-        $transactions = Transaction::where('user_id', Auth::id())
+        $transactions = Transaction::where('user_id', Auth::id())->where('kode_pesanan', '=', '')
             ->where('merchant_id', $merchant->id)
             ->get();
 
         // Mengambil semua detail transaksi untuk perhitungan total
         $transactionDetails = Transaction::where('user_id', Auth::id())
-            ->where('merchant_id', $merchant->id)
+            ->where('merchant_id', $merchant->id)->where('kode_pesanan', '=', '')
             ->with('product') // Mengambil data produk terkait setiap transaksi
             ->get();
 

@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('dashboard.layouts.main')
 
-@section('content')
+@section('container')
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-12">
@@ -14,11 +14,12 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Kode Transaksi
+                                        Nama Pembeli
                                     </th>
                                     <th>
-                                        Nama Merchant
+                                        Kode Transaksi
                                     </th>
+
                                     <th>Jumlah</th>
                                     <th>Harga</th>
                                     {{-- <th data-type="date" data-format="YYYY/DD/MM">Start Date</th> --}}
@@ -28,8 +29,8 @@
                             <tbody>
                                 @foreach ($transactions as $transaction)
                                     <tr>
+                                        <td>{{ $transaction->user->name }}</td>
                                         <td>{{ $transaction->kode_pesanan }}</td>
-                                        <td>{{ $transaction->merchant->company_name }}</td>
                                         <td>
                                             {{ $transactionSum->where('kode_pesanan', $transaction->kode_pesanan)->sum('quantity') }}
                                         </td>
