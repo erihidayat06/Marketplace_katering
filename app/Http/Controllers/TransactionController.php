@@ -20,7 +20,7 @@ class TransactionController extends Controller
 
         $validatedData['user_id'] = Auth::id();
 
-        // $validatedData['kode_pesanan'] = $this->generateOrderCode();
+        $validatedData['kode_pesanan'] = "";
 
 
         Transaction::create($validatedData);
