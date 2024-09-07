@@ -16,4 +16,14 @@ class Merchant extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where(function ($q) use ($searchTerm) {
+            $q->where('company_name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('address', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('tag', 'LIKE', "%{$searchTerm}%");
+        });
+    }
 }

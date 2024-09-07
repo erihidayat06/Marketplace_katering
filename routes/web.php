@@ -21,19 +21,19 @@ use App\Models\Transaction;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/dashboard', [ProfileController::class, 'index']);
-Route::put('/dashboard/profile/update', [ProfileController::class, 'update']);
+Route::get('/dashboard', [ProfileController::class, 'index'])->middleware('auth')->middleware('role.merchant');
+Route::put('/dashboard/profile/update', [ProfileController::class, 'update'])->middleware('auth')->middleware('role.merchant');
 Route::get('/merchant/{merchant:slug}', [ProfileController::class, 'merchant']);
 
-Route::get('/daftar-merchant/create', [ProfileController::class, 'create']);
-Route::post('/daftar-merchant', [ProfileController::class, 'store']);
+Route::get('/daftar-merchant/create', [ProfileController::class, 'create'])->middleware('auth');
+Route::post('/daftar-merchant', [ProfileController::class, 'store'])->middleware('auth');
 
-Route::resource('/dashboard/product', ProductMakananController::class);
+Route::resource('/dashboard/product', ProductMakananController::class)->middleware('role.merchant');
 
-Route::get('/dashboard/transaction', [TransactionController::class, 'indexAdmin']);
-Route::post('/transaction/store', [TransactionController::class, 'store']);
-Route::get('/transaction', [TransactionController::class, 'index']);
-Route::put('/transaction/update', [TransactionController::class, 'update']);
+Route::get('/dashboard/transaction', [TransactionController::class, 'indexAdmin'])->middleware('role.merchant');
+Route::post('/transaction/store', [TransactionController::class, 'store'])->middleware('auth');
+Route::get('/transaction', [TransactionController::class, 'index'])->middleware('auth');
+Route::put('/transaction/update', [TransactionController::class, 'update'])->middleware('auth');
 
 Route::get('/login-customer', []);
 

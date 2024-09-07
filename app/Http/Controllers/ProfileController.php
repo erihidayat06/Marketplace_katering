@@ -37,6 +37,8 @@ class ProfileController extends Controller
         $validateData['user_id'] = Auth::id();
         $validateData['slug'] = $slug;
         // Simpan data ke database
+
+        Auth::where('id', Auth::user()->id)->update(['role', 'merchant']);
         Merchant::create($validateData);
 
 
