@@ -1,0 +1,11 @@
+:root {
+    --text-main: #821131;
+}
+
+.bg-jumbotron {
+    background-color: #fabc3f;
+}
+
+.text-main {
+    color: var(--text-main);
+}
